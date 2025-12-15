@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["add","llgs_derivative","simulate_llgs"],"struct":["LLGSParameters","SimulationResult","Vector3"]};
