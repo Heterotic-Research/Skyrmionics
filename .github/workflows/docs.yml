@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: https://heterotic-research.github.io/Skyrmion/Skyrmion/index.html
     steps:
       - name: Deploy to GitHub Pages
         id: deploy
