@@ -79,11 +79,7 @@ impl Vector3 {
     /// Returns `self` unchanged if the magnitude is zero.
     pub fn normalized(self) -> Self {
         let mag = self.magnitude();
-        if mag == 0.0 {
-            self
-        } else {
-            self / mag
-        }
+        if mag == 0.0 { self } else { self / mag }
     }
 }
 
@@ -259,7 +255,10 @@ where
         magnetization.push(m);
     }
 
-    SimulationResult { times, magnetization }
+    SimulationResult {
+        times,
+        magnetization,
+    }
 }
 
 #[cfg(test)]
@@ -303,7 +302,10 @@ mod tests {
 
         for m in result.magnetization {
             let norm = m.magnitude();
-            assert!((norm - 1.0).abs() < 5e-4, "magnetization norm drifted: {norm}");
+            assert!(
+                (norm - 1.0).abs() < 5e-4,
+                "magnetization norm drifted: {norm}"
+            );
         }
     }
 
@@ -319,6 +321,9 @@ mod tests {
         });
 
         let final_state = *result.magnetization.last().unwrap();
-        assert!(final_state.z > 0.99, "spin failed to align with field: {final_state:?}");
+        assert!(
+            final_state.z > 0.99,
+            "spin failed to align with field: {final_state:?}"
+        );
     }
 }

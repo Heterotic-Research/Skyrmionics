@@ -1,39 +1,45 @@
-name: Deploy Rust docs
+name: Docs
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+	push:
+		branches:
+			- main
+	workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+	contents: read
+	pages: write
+	id-token: write
+
+concurrency:
+	group: pages
+	cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    runs-on: macos-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    concurrency:
-      group: docs-pages
-      cancel-in-progress: true
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+	build:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Checkout
+				uses: actions/checkout@v4
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+			- name: Install Rust
+				uses: dtolnay/rust-toolchain@stable
 
-      - name: Build docs
-        run: cargo doc --no-deps --workspace
-      - name: Prepare Pages artifact
-        run: touch target/doc/.nojekyll
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: target/doc
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+			- name: Build documentation
+				run: cargo doc --no-deps
+
+			- name: Upload documentation
+				uses: actions/upload-pages-artifact@v3
+				with:
+					path: target/doc
+
+	deploy:
+		needs: build
+		runs-on: ubuntu-latest
+		environment:
+			name: github-pages
+			url: ${{ steps.deploy.outputs.page_url }}
+		steps:
+			- name: Deploy to GitHub Pages
+				id: deploy
+				uses: actions/deploy-pages@v4
