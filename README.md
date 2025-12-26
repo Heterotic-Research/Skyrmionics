@@ -1,4 +1,4 @@
-# Skyrmion
+# Skyrmionics
 LLGS-based spin dynamics simulator and hardware synthesizer
 
 ## Documentation
@@ -11,7 +11,7 @@ LLGS-based spin dynamics simulator and hardware synthesizer
 ## Quick start
 
 ```rust
-use Skyrmion::{Vector3, LLGSParameters, simulate_llgs};
+use Skyrmionics::{Vector3, LLGSParameters, simulate_llgs};
 
 let params = LLGSParameters { gyromagnetic_ratio: 1.0, damping: 0.1 };
 let m0 = Vector3::new(1.0, 0.0, 0.0);

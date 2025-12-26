@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://heterotic-research.github.io/Skyrmion/Skyrmion/index.html
+      url: https://heterotic-research.github.io/Skyrmionics/Skyrmionics/index.html
     steps:
       - name: Deploy to GitHub Pages
         id: deploy

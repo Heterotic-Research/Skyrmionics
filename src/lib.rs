@@ -1,4 +1,4 @@
-//! Skyrmion: Spin dynamics utilities and LLGS simulator.
+//! Skyrmionics: Spin dynamics utilities and LLGS simulator.
 //!
 //! This crate provides a small, self-contained implementation of the
 //! Landau–Lifshitz–Gilbert–Slonczewski (LLGS) equation for single-spin
@@ -16,7 +16,7 @@
 //! -------
 //!
 //! ```rust
-//! use Skyrmion::{Vector3, LLGSParameters, simulate_llgs};
+//! use skyrmionics::{Vector3, LLGSParameters, simulate_llgs};
 //!
 //! let params = LLGSParameters { gyromagnetic_ratio: 1.0, damping: 0.1 };
 //! let m0 = Vector3::new(1.0, 0.0, 0.0);
